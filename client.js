@@ -8,7 +8,7 @@ var crypto = require('crypto');
  * ARGV Set
  */
 var size = parseInt(process.argv[2].toString().trim()); // the first argument
-var MaxIter = process.argv[3] ? parseInt(process.argv[3].toString().trim()) : 10; // the second argument
+var MaxIter = process.argv[3] ? parseInt(process.argv[3].toString().trim()) : 20; // the second argument
 
 /**
  * Socket.io connect
