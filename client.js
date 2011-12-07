@@ -31,10 +31,10 @@ socket.on('download', function(data) {
     times[i] = time;
     uploadStart(size);
   } else {
-    var ave = times.map(function(x, y) {
+    var ave = times.reduce(function(x, y) {
       return x + y
     }) / MaxIter;
-    console.log('Average roundtrip time: ', ave);
+    console.log('Average roundtrip time: ', ave, ' ms');
     process.exit(0);
   }
 });
