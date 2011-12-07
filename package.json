@@ -1,0 +1,20 @@
+{
+  "author": "kazuyukitanimura <kazuyukitanimura@gmail.com>",
+  "name": "socket.io-binaryTransferBenchmark",
+  "description": "benchmark the socket.io binary file transfer performance",
+  "version": "0.0.1",
+  "private": true,
+  "repository": {
+    "url": ""
+  },
+  "main": "app.js",
+  "engines": {
+    "node": "~0.6.5"
+  },
+  "dependencies": {
+    "socket.io-client": "https://github.com/kazuyukitanimura/socket.io-client/tarball/master",
+    "socket.io": "https://github.com/LearnBoost/socket.io/tarball/master"
+  },
+  "devDependencies": {}
+}
+
