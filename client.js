@@ -26,7 +26,7 @@ var i = MaxIter;
  */
 socket.on('download', function(data) {
   var time = Date.now() - start;
-  console.log('Data size: ', size, ', roudtrip time: ', time, ' ms');
+  console.log('Data size: ' + size + ', roudtrip time: ' + time + ' ms');
   if (i--) {
     times[i] = time;
     uploadStart(size);
@@ -34,7 +34,13 @@ socket.on('download', function(data) {
     var ave = times.reduce(function(x, y) {
       return x + y
     }) / MaxIter;
-    console.log('Average roundtrip time: ', ave, ' ms');
+    console.log('Average roundtrip time: ' + ave + ' ms');
+
+    /**
+     * Transfer ratio: size(Bytes) / (ave(ms) / 2(roundtrip)) * 1000 = (Bytes per Second)
+     * (Bytes per Second) * 8 / 1000 = (kbps)
+     */
+    console.log('Transfer ratio: ' + (size / ave * 2000).toFixed(1) + '(Bytes per Second) = ' + (size / ave * 16).toFixed(1) + '(kbps)');
     process.exit(0);
   }
 });
