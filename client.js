@@ -12,11 +12,12 @@ var size = parseInt(process.argv[2].toString().trim()); // the first argument
 /**
  * Socket.io connect
  */
+var serverName = 'server';
 var io = require('socket.io-client');
-var socket = io.connect('http://server.info:8082');
-//var socket = io.connect('https://server.info:8082');
-
+var socket = io.connect('http://' + serverName + '.info:8082');
+//var socket = io.connect('https://' + serverName + '.info:8082');
 var start = undefined;
+var i = 10;
 
 /**
  * Download Event
@@ -24,14 +25,23 @@ var start = undefined;
 socket.on('download', function(data) {
   var time = Date.now() - start;
   console.log('Data size: ', size, ', roudtrip time: ', time, ' ms');
+  if (i--) {
+    uploadStart(size);
+  } else {
+    process.exit(0);
+  }
 });
 
 /**
  * Upload File
  */
-crypto.randomBytes(size, function(ex, buf) {
-  if (ex) throw ex;
-  start = Date.now();
-  socket.emit('upload', buf);
-});
+function uploadStart(size) {
+  crypto.randomBytes(size, function(ex, buf) {
+    if (ex) throw ex;
+    start = Date.now();
+    socket.emit('upload', buf);
+  });
+}
+
+uploadStart(size);
 

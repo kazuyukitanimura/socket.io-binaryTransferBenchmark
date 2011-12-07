@@ -4,9 +4,10 @@
 
 var fs = require('fs');
 
+var serverName = 'server';
 var options = {
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.cert')
+  key: fs.readFileSync(serverName + '.key'),
+  cert: fs.readFileSync(serverName + '.cert')
 };
 
 var app = require('http').createServer();
