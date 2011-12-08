@@ -9,7 +9,7 @@ var crypto = require('crypto');
  */
 var Size = parseInt(process.argv[2].toString().trim()); // the first argument
 var MaxIter = process.argv[3] ? parseInt(process.argv[3].toString().trim()) : 20; // the second argument
-var Protocol = process.argv[4] ? 'https' : 'http' // the third argument
+var Protocol = process.argv[4] ? 'https': 'http' // the third argument
 
 /**
  * Socket.io connect
@@ -19,6 +19,14 @@ var TLD = 'info'
 var PortN = 8082
 var io = require('socket.io-client');
 var socket = io.connect(Protocol + '://' + ServerName + '.' + TLD + ':' + PortN);
+
+/**
+ * Error handler
+ */
+socket.socket.on('error', function(reason) {
+  console.error('connection to the "' + ServerName + '" has broken, reason: [' + reason + ']');
+});
+
 var start = undefined;
 var totalTime = 0;
 var i = MaxIter;
