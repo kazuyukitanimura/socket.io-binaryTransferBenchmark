@@ -18,7 +18,7 @@ var io = require('socket.io-client');
 var socket = io.connect('http://' + serverName + '.info:8082');
 //var socket = io.connect('https://' + serverName + '.info:8082');
 var start = undefined;
-var times = [];
+var totalTime = 0;
 var i = MaxIter;
 
 /**
@@ -28,12 +28,10 @@ socket.on('download', function(data) {
   var time = Date.now() - start;
   console.log('Data size: ' + size + ', roudtrip time: ' + time + ' ms');
   if (i--) {
-    times[i] = time;
+    totalTime += time;
     uploadStart(size);
   } else {
-    var ave = times.reduce(function(x, y) {
-      return x + y
-    }) / MaxIter;
+    var ave = totalTime / MaxIter;
     console.log('Average roundtrip time: ' + ave + ' ms');
 
     /**
