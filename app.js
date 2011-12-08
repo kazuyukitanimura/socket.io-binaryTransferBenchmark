@@ -22,7 +22,8 @@ app.listen(8082);
 
 // Configuration
 io.configure(function() {
-  io.set('log level', 2); // reduce logging
+  io.set('log level', 0); // reduce logging
+  io.set('transports', ['websocket']);  
 });
 
 io.sockets.on('connection', function(socket) {
