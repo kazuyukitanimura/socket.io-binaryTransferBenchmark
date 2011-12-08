@@ -7,7 +7,7 @@ var fs = require('fs');
 /**
  * ARGV Set
  */
-var protocol = process.argv[2] ? 'https' : 'http' // the first argument
+var Protocol = process.argv[2] ? 'https' : 'http' // the first argument
 
 var ServerName = 'server';
 var options = {
@@ -15,7 +15,7 @@ var options = {
   cert: fs.readFileSync(ServerName + '.cert')
 };
 
-var app = require(protocol).createServer();
+var app = require(Protocol).createServer();
 var io = require('socket.io').listen(app);
 
 app.listen(8082);
