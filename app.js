@@ -4,14 +4,18 @@
 
 var fs = require('fs');
 
-var serverName = 'server';
+/**
+ * ARGV Set
+ */
+var protocol = process.argv[2] ? 'https' : 'http' // the first argument
+
+var ServerName = 'server';
 var options = {
-  key: fs.readFileSync(serverName + '.key'),
-  cert: fs.readFileSync(serverName + '.cert')
+  key: fs.readFileSync(ServerName + '.key'),
+  cert: fs.readFileSync(ServerName + '.cert')
 };
 
-var app = require('http').createServer();
-//var app = require('https').createServer(options);
+var app = require(protocol).createServer();
 var io = require('socket.io').listen(app);
 
 app.listen(8082);
