@@ -15,7 +15,7 @@ var options = {
   cert: fs.readFileSync(ServerName + '.cert')
 };
 
-var app = require(Protocol).createServer();
+var app = require(Protocol).createServer((Protocol === 'https') ? options : undefined );
 var io = require('socket.io').listen(app);
 
 app.listen(8082);
