@@ -37,8 +37,8 @@ var i = MaxIter;
 socket.on('download', function(data) {
   var time = Date.now() - start;
   console.log('Data size: ' + Size + ', roudtrip time: ' + time + ' ms');
-  if (i--) {
-    totalTime += time;
+  totalTime += time;
+  if (--i) {
     uploadStart(Size);
   } else {
     var ave = totalTime / MaxIter;
