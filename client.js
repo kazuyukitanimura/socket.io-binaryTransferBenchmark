@@ -14,7 +14,7 @@ var Protocol = process.argv[4] ? 'https': 'http' // the third argument
 /**
  * Socket.io connect
  */
-var ServerName = 'server.info';
+//var ServerName = 'server.info';
 var ServerName = 'localhost';
 var PortN = 8082
 var io = require('socket.io-client');
